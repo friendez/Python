@@ -1,0 +1,42 @@
+import random
+
+print("Welcome to the Guessing Game!\n")
+
+def menu():
+    game_choice = input("Menu:\n1.) Begin playing\n2.) Quit\n")
+
+    if game_choice == '1':
+        beginGame()
+    elif game_choice == '2':
+        goodbye()
+    else:
+        print("Invalid selection\n\n")
+        menu()
+
+def goodbye():
+    print("Goodbye!")
+    quit()
+
+def beginGame():
+    print("You must find the number within the range of 1 - 10")
+    guess_me = random.randrange(1,11)
+    counter = 0
+
+    while True:
+        guessed = input("Input a number, or type 'exit' to quit: ")
+        counter += 1
+        try:
+            if guessed.lower() == 'exit':
+                goodbye()
+            if int(guessed) == guess_me:
+                print("You won in %d tries!!\n" % counter)
+                beginGame()
+            elif int(guessed) < guess_me:
+                print("Higher...")
+            elif int(guessed) > guess_me:
+                print("Lower...")
+        except ValueError:
+            print("Invalid Option: Select a number 1-10 or type 'exit' to quit")
+
+menu()
+
