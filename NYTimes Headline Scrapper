@@ -1,0 +1,17 @@
+from bs4 import BeautifulSoup
+import requests
+
+nyt = requests.get("http://www.nytimes.com/")
+soup = BeautifulSoup(nyt.text,'html.parser')
+headlines = []
+
+def add_headlines(x):
+    for heading in soup.find_all(x,{'class':'story-heading'}):
+            headlines.append(heading.string)
+
+for i in range(1,4):
+    add_headlines("h%d" % i)
+
+for i in headlines:
+    if str(i) != 'None':
+        print(i)
