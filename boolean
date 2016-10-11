@@ -1,0 +1,15 @@
+"""
+Write a function that takes an ordered list of numbers (a list where the elements are in order from smallest to largest) and another number. The function decides whether or not the given number is inside the list and returns (then prints) an appropriate boolean.
+"""
+
+
+def testNum(list,x):
+    if x in list:
+         return True
+
+
+orderedList = sorted([5, 66, 23, 10, 89, 16])
+num = 89
+
+if testNum(orderedList,num):
+    print("What up!")
