@@ -1,0 +1,63 @@
+import random
+
+def run_game():
+    random_num = [random.randint(0, 9) for _ in range(4)]
+    counter = 0
+
+    while True:
+            counter += 1
+            cows = 0
+            bulls = 0
+            user_in = input("Please enter a four digit number: ")
+
+            try:
+                if user_in == "quit":
+                    print("Goodbye!")
+                    quit()
+                elif user_in.lower() == "cheat":
+                    print("Here you go... Cheater! %s" % random_num)
+                    pass
+                elif user_in.lower() == "count":
+                    print(counter)
+                else:
+                    int(user_in)
+            except ValueError:
+                print("Sorry, you may only select numbers\n\n")
+                break
+
+            if len(user_in) == 4:
+                for i,x in zip(str(user_in),random_num):
+                    if int(i) == int(x):
+                        cows += 1
+                        if cows >= 4:
+                            print("You won in %d tries!\n\n" % counter)
+                            return False
+                    elif int(i) in random_num:
+                        bulls += 1
+                print("%d cows, %d bulls" % (cows,bulls))
+            elif len(user_in) >= 5:
+                print("You entered too many numbers!\n")
+            elif len(user_in) <= 3:
+                print("You entered too few numbers!\n")
+
+def directions():
+    print("\n\nYou may only select numbers.\nType \"quit\" to exit the game, or type \"cheat\" to get the answer displayed to you.\n")
+    print("For every digit that the user guessed correctly in the correct place, they have a “cow”.\n"
+          "For every digit the user guessed correctly in the wrong place is a “bull.” Every time the user makes a guess, tell them how many “cows” and “bulls” they have.\n"
+          "Once the user guesses the correct number, the game is over.")
+
+
+print("\nWelcome to the Cows and Bulls game!!\n")
+
+while True:
+    user_opt = input("Menu\n\n1.) Start Game\n2.) Directions\n3.) Quit\n")
+    try:
+        if int(user_opt) == 1:
+            run_game()
+        elif int(user_opt) == 2:
+            directions()
+        elif int(user_opt) == 3:
+            print("Goodbye!")
+            quit()
+    except ValueError:
+        print("Select either: 1 or 2 \n\n")
