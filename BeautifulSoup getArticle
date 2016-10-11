@@ -13,9 +13,12 @@ This will just print the full text of the article to the screen. It will not mak
 import requests
 from bs4 import BeautifulSoup
 
-article = requests.get('http://www.vanityfair.com/style/society/2014/06/monica-lewinsky-humiliation-culture')
-soup = BeautifulSoup(article.text,"html.parser")
+def getArticle(x):
+    article = requests.get(x)
+    soup = BeautifulSoup(article.text,"html.parser")
 
-for line in soup.find_all('p'):
-    if str(line.string) != "None":
-        print(line.string)
+    for line in soup.find_all('p'):
+        if str(line.string) != "None":
+            print(line.string)
+
+getArticle('http://www.vanityfair.com/style/society/2014/06/monica-lewinsky-humiliation-culture')
