@@ -1,0 +1,10 @@
+import requests
+
+with requests.Session() as c:
+    url = '___'
+    c.get(url)
+    for key in c.cookies.keys():
+        print('%s: %s' % (key, c.cookies[key]))
+        
+        
+   
